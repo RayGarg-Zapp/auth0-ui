@@ -109,16 +109,8 @@
 
   <script>
   (function () {
-    const params = new URLSearchParams(window.location.search);
-    const sessionToken = params.get("session_token");
-
     const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
-
-    if (!sessionToken) {
-      document.getElementById("err").style.display = "block";
-      return;
-    }
-
+    
     document.getElementById("continue").onclick = () => {
       window.location.href =
         `https://${tenant}/continue`;
