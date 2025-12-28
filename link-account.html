@@ -110,7 +110,7 @@
   <script>
   (function () {
     const params = new URLSearchParams(window.location.search);
-    const state = params.get("state");
+    const state = params.get("session_token");
 
     const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
 
@@ -121,7 +121,7 @@
 
     document.getElementById("continue").onclick = () => {
       window.location.href =
-        `https://${tenant}/continue?state=${encodeURIComponent(state)}`;
+        `https://${tenant}/continue?session_token=${encodeURIComponent(sessionToken)}`;
     };
 
     document.getElementById("cancel").onclick = () => {
