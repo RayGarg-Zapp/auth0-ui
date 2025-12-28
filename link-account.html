@@ -108,25 +108,26 @@
   </main>
 
   <script>
-    (function(){
-      const params = new URLSearchParams(window.location.search);
-      const token = params.get("session_token");
-      const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get("state");
 
-      if (!token) {
-        document.getElementById("err").style.display = "block";
-        return;
-      }
+    const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
 
-      document.getElementById("continue").onclick = () => {
-        window.location.href =
-          `https://${tenant}/continue?session_token=${encodeURIComponent(token)}`;
-      };
+    if (!state) {
+      document.getElementById("err").style.display = "block";
+      return;
+    }
 
-      document.getElementById("cancel").onclick = () => {
-        window.location.href = "https://localhost:8080";
-      };
-    })();
+    document.getElementById("continue").onclick = () => {
+      window.location.href =
+        `https://${tenant}/continue?state=${encodeURIComponent(state)}`;
+    };
+
+    document.getElementById("cancel").onclick = () => {
+      window.location.href = "https://localhost:8080";
+    };
+  })();
   </script>
 </body>
 </html>
