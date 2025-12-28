@@ -110,10 +110,17 @@
   <script>
   (function () {
     const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get("state");
+
+    if (!state) {
+      document.getElementById("err").style.display = "block";
+      return;
+    }
     
     document.getElementById("continue").onclick = () => {
       window.location.href =
-        `https://${tenant}/continue`;
+        `https://${tenant}/continue?state=${encodeURIComponent(state)}`;
     };
 
     document.getElementById("cancel").onclick = () => {
