@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Link accounts</title>
+  <title>Confirm account linking</title>
   <meta name="color-scheme" content="light dark"/>
   <meta name="robots" content="noindex"/>
 
@@ -25,8 +25,10 @@
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
-      background:radial-gradient(1000px 700px at 20% -10%, rgba(79,140,255,.25), transparent 40%),
-                 radial-gradient(900px 600px at 120% 120%, rgba(34,197,94,.18), transparent 45%),var(--bg);
+      background:
+        radial-gradient(1000px 700px at 20% -10%, rgba(79,140,255,.25), transparent 40%),
+        radial-gradient(900px 600px at 120% 120%, rgba(34,197,94,.18), transparent 45%),
+        var(--bg);
       color:var(--text);
       display:flex;
       align-items:center;
@@ -57,25 +59,41 @@
       background:transparent;border:1px solid var(--border);
       color:var(--text);
     }
-    .error{color:#ef4444;font-size:13px;display:none;margin-top:12px}
+    .hint{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .error{
+      color:#ef4444;
+      font-size:13px;
+      display:none;
+      margin-top:12px
+    }
   </style>
 </head>
 
 <body>
   <main class="card">
-    <h1>Link your accounts</h1>
+    <h1>🔐 Confirm account linking</h1>
+
     <p>
-      We found another sign-in method using the same email address.
-      Linking them lets you use either method to access your account.
+      We detected another sign-in method associated with this email address.
+      Linking accounts lets you sign in using either method while keeping one secure profile.
     </p>
+
     <p>
-      For security, you’ll confirm the second account before linking.
+      For security, you’ll verify the second account before we link them.
     </p>
 
     <div class="actions">
-      <button id="continue" class="primary">Continue</button>
+      <button id="continue" class="primary">Confirm and continue</button>
       <button id="cancel" class="secondary">Cancel</button>
     </div>
+
+    <p class="hint">
+      This action does not change your password or security settings.
+    </p>
 
     <div id="err" class="error">
       We couldn’t resume your session. Please close this tab and sign in again.
