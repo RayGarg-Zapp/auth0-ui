@@ -121,7 +121,7 @@
 
     document.getElementById("continue").onclick = () => {
       window.location.href =
-        `https://${tenant}/continue?session_token=${encodeURIComponent(sessionToken)}`;
+        `https://${tenant}/continue?state=${encodeURIComponent(sessionToken)}`;
     };
 
     document.getElementById("cancel").onclick = () => {
