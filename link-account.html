@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Confirm account linking</title>
 
-  <!-- Critical: prevent caching -->
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
   <meta name="robots" content="noindex"/>
 
   <style>
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto;
       background: #0b0c10;
       color: #eaeef5;
       display: flex;
@@ -25,8 +24,8 @@
       background: #111317;
       padding: 28px;
       border-radius: 16px;
-      width: 100%;
       max-width: 520px;
+      width: 100%;
       text-align: center;
     }
     button {
@@ -58,41 +57,34 @@
 <body>
   <div class="card">
     <h2>Confirm account linking</h2>
-    <p>
-      We found another sign-in method for this email.
-      Confirm to link the accounts.
-    </p>
+    <p>We found another sign-in method for this email.</p>
+    <p>Confirm to link the accounts and continue.</p>
 
     <button id="continue" class="primary">Confirm and continue</button>
     <button id="cancel" class="secondary">Cancel</button>
 
     <div id="err" class="error">
-      Unable to resume login. Please close this tab and try again.
+      Missing state. Please close this tab and sign in again.
     </div>
   </div>
 
   <script>
-    (function () {
-      const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
-      const params = new URLSearchParams(window.location.search);
-      const state = params.get("state");
+    const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get("state");
 
-      if (!state) {
-        document.getElementById("err").style.display = "block";
-        return;
-      }
+    if (!state) {
+      document.getElementById("err").style.display = "block";
+    }
 
-      document.getElementById("continue").onclick = () => {
-        // ✅ REQUIRED: top-level GET navigation
-        window.location.replace(
-          `https://${tenant}/continue?state=${encodeURIComponent(state)}`
-        );
-      };
+    document.getElementById("continue").onclick = () => {
+      // 🚨 DO NOT encode state
+      window.location.href = `https://${tenant}/continue?state=${state}`;
+    };
 
-      document.getElementById("cancel").onclick = () => {
-        window.location.replace("http://localhost:8080");
-      };
-    })();
+    document.getElementById("cancel").onclick = () => {
+      window.location.href = "http://localhost:8080";
+    };
   </script>
 </body>
 </html>
