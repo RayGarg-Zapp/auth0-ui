@@ -108,25 +108,36 @@
   </main>
 
   <script>
-  (function () {
-    const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
-    const params = new URLSearchParams(window.location.search);
-    const state = params.get("state");
+(function () {
+  const tenant = "dev-cnhsg0roe6qny5na.us.auth0.com";
+  const params = new URLSearchParams(window.location.search);
+  const state = params.get("state");
 
-    if (!state) {
-      document.getElementById("err").style.display = "block";
-      return;
-    }
-    
-    document.getElementById("continue").onclick = () => {
-      window.location.href =
-        `https://${tenant}/continue?state=${encodeURIComponent(state)}`;
-    };
+  if (!state) {
+    document.getElementById("err").style.display = "block";
+    return;
+  }
 
-    document.getElementById("cancel").onclick = () => {
-      window.location.href = "https://localhost:8080";
-    };
-  })();
-  </script>
+  document.getElementById("continue").onclick = () => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = `https://${tenant}/continue`;
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "state";
+    input.value = state;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+  };
+
+  document.getElementById("cancel").onclick = () => {
+    window.location.href = "https://localhost:8080";
+  };
+})();
+</script>
+
 </body>
 </html>
