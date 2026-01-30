@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Verification Required</title>
+  <meta name="color-scheme" content="light dark" />
+  <meta name="robots" content="noindex" />
+
+  <style>
+    :root{
+      --bg:#0b0c10;--card:#111317;--text:#eaeef5;--muted:#9aa6b2;
+      --accent:#4f8cff;--accent-600:#3a74e0;--border:#1d2129;
+      --success:#22c55e;--shadow:0 12px 34px rgba(0,0,0,.45)
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb;--card:#ffffff;--text:#0f172a;--muted:#475569;
+        --accent:#155ee7;--accent-600:#0e47b5;--border:#e5e7eb;
+        --success:#16a34a;--shadow:0 10px 28px rgba(0,0,0,.12)
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell;
+      background:
+        radial-gradient(1100px 700px at 15% -10%, rgba(79,140,255,.25), transparent 45%),
+        radial-gradient(900px 600px at 120% 120%, rgba(34,197,94,.18), transparent 50%),
+        var(--bg);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:min(820px,100%);
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0)),var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:30px 32px;
+      box-shadow:var(--shadow);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:10px;
+      font-weight:700;
+      letter-spacing:.3px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(34,197,94,.15);
+      color:var(--success);
+      border:1px solid rgba(34,197,94,.35);
+      margin:12px 0 14px;
+    }
+    h1{
+      font-size:28px;
+      margin:6px 0 12px;
+      font-weight:700;
+    }
+    p{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+    }
+    .summary{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin:20px 0;
+    }
+    .item{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:16px;
+      display:flex;
+      gap:12px;
+    }
+    .actions{
+      display:flex;
+      gap:14px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      padding:14px 18px;
+      font-weight:600;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(180deg,var(--accent),var(--accent-600));
+      box-shadow:0 8px 22px rgba(79,140,255,.35);
+    }
+    .btn-secondary{
+      background:transparent;
+      border:1px solid var(--border);
+      color:var(--text);
+    }
+    .footer{
+      margin-top:18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="brand">Zappsec Identity Security</div>
+
+    <span class="badge">Verification required</span>
+
+    <h1>Confirm Your Identity</h1>
+
+    <p>
+      We detected multiple sign-in methods associated with your email.
+      To protect your account, we need to confirm ownership before securely linking them.
+    </p>
+
+    <section class="summary">
+      <div class="item">
+        🔗 <strong>Unified access</strong><br/>
+        Your social and password-based identities will be merged into one secure profile.
+      </div>
+      <div class="item">
+        🛡️ <strong>Step-up security</strong><br/>
+        This verification prevents unauthorized account takeover.
+      </div>
+    </section>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="continueLogin()">
+        Verify & Continue
+      </button>
+      <button class="btn btn-secondary" onclick="window.close()">
+        Cancel
+      </button>
+    </div>
+
+    <div class="footer">
+      You’ll be asked to sign in again to complete verification.
+    </div>
+  </main>
+
+  <script>
+    function continueLogin() {
+      // Directly start a new Auth0 transaction
+      window.location.href = "https://authenticate.zappsecure.io/authorize";
+    }
+  </script>
+</body>
+</html>
